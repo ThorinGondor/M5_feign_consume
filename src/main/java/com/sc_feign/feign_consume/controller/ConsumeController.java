@@ -14,18 +14,18 @@ public class ConsumeController {
     HelloService helloService;
 
     @RequestMapping(value = "/feign-consumer", method = RequestMethod.GET)
-    public String helloConsumer(){
+    public String helloConsumer() {
         return helloService.hello();
     }
 
     @RequestMapping(value = "/feign-consumer-expand", method = RequestMethod.GET)
-    public String helloConsumerExpand(){
+    public String helloConsumerExpand() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(helloService.hello()).append("\n");   //将调用Eureka-Client提供的第0个服务
         stringBuilder.append(helloService.hello("Jason")).append("\n");  //将调用Eureka-Client提供的第1个服务
         stringBuilder.append(helloService.hello("Kimi", 34)).append("\n");  //将调用Eureka-Client提供的第2个服务
         stringBuilder.append(helloService.hello(new User("Curry", 30))).append("\n");  //将调用Eureka-Client提供的第3个服务
 
-        return stringBuilder.toString();
+        return stringBuilder.toString(); //将获取的各个结果统一输出到控制台上
     }
 }
